@@ -20,15 +20,17 @@ $ docker run -p 8000:8000/tcp books-challenge:latest
 
 Environment variables
 
-**SQLALCHEMY_DATABASE_URL:** 
+***SQLALCHEMY_DATABASE_URL:***
 dialect+driver://username:password@host:port/database. Dialect names include the identifying name of the SQLAlchemy dialect, a name such as sqlite , mysql , postgresql , oracle , or mssql 
-``console
-default = "sqlite:///./books.db"
+
+```console
+$ default = "sqlite:///./books.db"
 ```
 
-**BOOKS_PROVIDER_URL:**
+***BOOKS_PROVIDER_URL:***
 A book api library url that receives an ISBN as parameter to provide book details. The url must contain the "{isbn}" tag to indicate where the ISBN number should be requested.
-``console
-default = "https://openlibrary.org/api/books?bibkeys=ISBN:{isbn}&format=json&jscmd=details"
+
+```console
+$ default = "https://openlibrary.org/api/books?bibkeys=ISBN:{isbn}&format=json&jscmd=details"
 ```
 
