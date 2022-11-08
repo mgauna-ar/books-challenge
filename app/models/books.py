@@ -10,4 +10,4 @@ class Book(Base):
     isbn = Column(String, unique=True, index=True)
     information = Column(String)
 
-    comments = relationship("Comment", back_populates="book")
+    comments = relationship("Comment", cascade="all,delete", back_populates="book")

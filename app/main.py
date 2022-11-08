@@ -8,7 +8,19 @@ from app.routers import books, comments
 
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title="Book Managament API")
+app = FastAPI(
+    title="Book Managament API",
+    openapi_tags=[
+        {
+            "name": "books",
+            "description": "Operations with books.",
+        },
+        {
+            "name": "comments",
+            "description": "Operations with comments."
+        }
+    ]
+)
 
 app.include_router(books.router)
 app.include_router(comments.router)

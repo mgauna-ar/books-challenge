@@ -14,12 +14,14 @@ router = APIRouter(
 
 @router.get("/", response_model=list[Book])
 def read_all(
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    skip: int = 0,
+    limit: int = 100
 ):
     """
     Retrieve all books in database.
     """
-    return book.get_all(db)
+    return book.get_all(db,skip,limit)
 
 
 @router.post("/{isbn}", response_model=Book)
@@ -79,13 +81,13 @@ def delete(
     db: Session = Depends(get_db)
 ):
     """
-    Delete comment from a book
+    Delete book from a database
     """
     db_book = book.get_by_isbn(db, isbn)
     if not db_book:
         raise HTTPException(
             status_code=400,
-            detail="Comment doesn't exists.",
+            detail="Book doesn't exists.",
         )
     db_book = book.remove(db, db_book.id)
     return db_book

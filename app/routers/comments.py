@@ -14,12 +14,14 @@ router = APIRouter(
 @router.get("/{isbn}", response_model=list[Comment])
 def read_all(
     isbn: str = Depends(validate_isbn),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    skip: int = 0,
+    limit: int = 100
 ):
     """
     Retrieve all comments from a book.
     """
-    return comment.get_all(db, isbn)
+    return comment.get_all(db, isbn, skip, limit)
 
 
 @router.post("/{isbn}", response_model=Comment)
